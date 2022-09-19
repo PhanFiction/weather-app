@@ -41,7 +41,7 @@ class App extends React.Component {
     const { city } = this.state;
     return(
       <div className="container">
-        <div className="wrapper">
+        <div className="overlay">
           <InputCity value={city} handleInput={this.handleCityChange} handleSubmit={this.getCityInfo}/>
         </div>
       </div>

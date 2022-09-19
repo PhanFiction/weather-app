@@ -1,3 +1,18 @@
 body {
   font-family: montserrat, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background-image: url('./assets/bg.jpg');
+  object-fit: fill;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.overlay {
+  background-color: rgb(0,0,0,40%);
+  height: 100vh;
 }
