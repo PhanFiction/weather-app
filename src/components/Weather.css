@@ -1,0 +1,20 @@
+.weather-container, .weather-info {
+  color: white;
+  list-style: none;
+}
+
+.todayWeather {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: center;
+}
+
+.weather-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-info > li {
+  margin: 1rem 0 1rem 0;
+}

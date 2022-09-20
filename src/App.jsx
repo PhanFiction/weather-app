@@ -1,5 +1,5 @@
 import React from "react";
-import { setForecast, setWeather, initializeWeather } from "./reducers/serviceReducer";
+import { setDailyForecast, setHourlyForecast, setWeather, initializeWeather } from "./reducers/serviceReducer";
 import service from "./services/service";
 import { connect } from 'react-redux';
 import Forecast from './components/Forecast.jsx'
@@ -24,13 +24,13 @@ class App extends React.Component {
     const { city } = this.state;
     const cityWeather = await service.getForecast(city);
     const cityForecast = await service.getWeather(city);
-    this.props.setForecast(cityForecast);
+    this.props.setDailyForecast(cityForecast);
+    this.props.setHourlyForecast(cityForecast);
     this.props.setWeather(cityWeather);
   }
 
   handleCityChange(event){
-    console.log(this.props.forecast);
-    this.setState(state => {
+    this.setState(_state => {
       return {
         city: event.target.value,   
       }
@@ -43,29 +43,23 @@ class App extends React.Component {
       <div className="container">
         <div className="overlay">
           <InputCity value={city} handleInput={this.handleCityChange} handleSubmit={this.getCityInfo}/>
+          <Weather />
+          <Forecast />
         </div>
       </div>
     )
   }
 }
 
-// just returns the state
-const mapStateToProps = (state) => {
-  return {
-    weather: state.weather,
-    forecast: state.forecast,
-  }
-}
-
 // handle dispatching actions
 const mapDispatchToProps = {
-  setForecast,
+  setDailyForecast,
   setWeather,
   initializeWeather,
 }
 
 const ConnectedApp = connect(
- mapStateToProps,
+ null,
  mapDispatchToProps,
 )(App);
 

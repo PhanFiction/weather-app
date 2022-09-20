@@ -3,7 +3,6 @@ import serviceReducer from '../src/reducers/serviceReducer'
 
 export default configureStore({
   reducer: {
-    weather: serviceReducer,
-    forecast: serviceReducer,
+    openWeather: serviceReducer,
   },
 })
