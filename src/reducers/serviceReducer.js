@@ -7,9 +7,10 @@ const weatherInfoSlice = createSlice({
   reducers: {
     setDailyForecast(state, action){
       console.log(action.payload);
+      const defaultForecastFiltered = filterForecast(action.payload);
       return {
         ...state,
-        dailyForecast: action.payload,
+        dailyForecast: defaultForecastFiltered,
       }
     },
     setHourlyForecast(state, action){
@@ -42,9 +43,8 @@ export const initializeWeather = () => {
   return async dispatch => {
     const defaultForecast = await service.getForecast('London');
     const defaultWeather = await service.getWeather('London');
-    const defaultForecastFiltered = filterForecast(defaultForecast);
 
-    dispatch(setDailyForecast(defaultForecastFiltered));
+    dispatch(setDailyForecast(defaultForecast));
     dispatch(setHourlyForecast(defaultForecast));
     dispatch(setWeather(defaultWeather));
   }

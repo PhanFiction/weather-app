@@ -14,6 +14,7 @@ class App extends React.Component {
       city: '',
     }
     this.handleCityChange = this.handleCityChange.bind(this);
+    this.getCityInfo = this.getCityInfo.bind(this);
   }
 
   componentDidMount(){
@@ -22,8 +23,9 @@ class App extends React.Component {
 
   getCityInfo = async () => {
     const { city } = this.state;
-    const cityWeather = await service.getForecast(city);
-    const cityForecast = await service.getWeather(city);
+    const cityForecast= await service.getForecast(city);
+    const cityWeather = await service.getWeather(city);
+    
     this.props.setDailyForecast(cityForecast);
     this.props.setHourlyForecast(cityForecast);
     this.props.setWeather(cityWeather);
@@ -40,8 +42,8 @@ class App extends React.Component {
   render(){
     const { city } = this.state;
     return(
-      <div className="container">
-        <div className="overlay">
+      <div className="overlay">
+        <div className="container">
           <InputCity value={city} handleInput={this.handleCityChange} handleSubmit={this.getCityInfo}/>
           <Weather />
           <Forecast />
@@ -55,6 +57,7 @@ class App extends React.Component {
 const mapDispatchToProps = {
   setDailyForecast,
   setWeather,
+  setHourlyForecast,
   initializeWeather,
 }
 
